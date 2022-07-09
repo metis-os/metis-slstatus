@@ -1,14 +1,3 @@
-/*
-  _                                   _                     
- (_)                                 | |                    
-  _ _   _  __ _ _ __ ___  _ __   __ _| |__   ___  ___ _ __  
- | | | | |/ _` | '_ ` _ \| '_ \ / _` | '_ \ / _ \/ _ \ '_ \ 
- | | |_| | (_| | | | | | | | | | (_| | |_) |  __/  __/ | | |
- |_|\__, |\__,_|_| |_| |_|_| |_|\__,_|_.__/ \___|\___|_| |_|
-     __/ |   ##slstatus`                                               
-    |___/                                                   
-*/
-
 const unsigned int interval = 1000;
 static const char unknown_str[] = "n/a";
 #define MAXLEN 2048
@@ -70,8 +59,8 @@ static const struct arg args[] = {
 	//{ datetime, "%s",           "%F %T" },
 	//{ wifi_perc, "W: (%3s%% on ", "wlp8s0" },
        /* { run_command, "^c#ed2f2f^   %s |", "light | cut -b -2" },*/
-	{ run_command, "^c#f50737^||BAT  %s||", "acpi -b | awk '{print $4}' | sed s/.$//" },
+	{ run_command, "^c#eb34c9^||BAT  %s||", "acpi -b | awk '{print $4}' | sed s/.$//" },
 	//{ cpu_perc, "^c#e639c0^ [CPU  %s%%]   ", NULL	      }
 	//{ ram_perc, "^c#e639c0^ [RAM  %s%%] ", NULL	      },
-	{ datetime, "^c#f50737^ ||%s ||",           "%a %b %r" },
+	{ datetime, "^c#eb34c9^ ||%s ||",           "%a %b %r" },
 };
