@@ -1,5 +1,12 @@
+/* See LICENSE file for copyright and license details. */
+
+/* interval between updates (in ms) */
 const unsigned int interval = 1000;
+
+/* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
+
+/* maximum output string length */
 #define MAXLEN 2048
 
 /*
@@ -38,6 +45,7 @@ static const char unknown_str[] = "n/a";
  * ram_total           total memory size in GB         NULL
  * ram_used            used memory in GB               NULL
  * run_command         custom shell command            command (echo foo)
+ * separator           string to echo                  NULL
  * swap_free           free swap in GB                 NULL
  * swap_perc           swap usage in percent           NULL
  * swap_total          total swap size in GB           NULL
@@ -51,16 +59,25 @@ static const char unknown_str[] = "n/a";
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
+ *                                                     NULL on OpenBSD
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	//{ datetime, "%s",           "%F %T" },
-	//{ wifi_perc, "W: (%3s%% on ", "wlp8s0" },
-       /* { run_command, "^c#ed2f2f^   %s |", "light | cut -b -2" },*/
-	{ run_command, "^c#eb34c9^||BAT  %s||", "acpi -b | awk '{print $4}' | sed s/.$//" },
-	//{ cpu_perc, "^c#e639c0^ [CPU  %s%%]   ", NULL	      }
-	//{ ram_perc, "^c#e639c0^ [RAM  %s%%] ", NULL	      },
-	{ datetime, "^c#eb34c9^ ||%s ||",           "%a %b %r" },
+	{ run_command, "^c#a813e8^ %s ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
+	{ battery_perc, "^c#e81324^%s%% ", "BAT0" },
+//	{ wifi_essid, "  %s", "wlo1" },
+//	{ run_command, "  %s", "ifconfig wlo1 | grep 'TX packets' | awk {'print $6 $7'}" },
+//	{ run_command, "  %s ", "ifconfig wlo1 | grep 'RX packets' | awk {'print $6 $7'}" },
+	{ cpu_perc, "^c#2da30f^ %s%% ", NULL },
+    { datetime, "^c#0f97a3^ %s ",		"%F" },
+	{ datetime, "^c#a30f63^ %s ",           "%I:%M" },
+
+	{ ram_used, "^c#e639c0^ %s ", NULL },
+	{ disk_free, "^c#9d32a8^ %s " , "/" },
 };
+//	{ vol_perc, "   [%s%] |",
+//	{ netspeed_tx, "  %s", "wlo1" },
+//	{ netspeed_rx, "  %s|;", "wlo1" },
+

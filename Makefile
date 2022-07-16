@@ -6,9 +6,28 @@ include config.mk
 
 REQ = util
 COM =\
+	components/battery\
+	components/cpu\
 	components/datetime\
+	components/disk\
+	components/entropy\
+	components/hostname\
+	components/ip\
+	components/kernel_release\
+	components/keyboard_indicators\
+	components/keymap\
+	components/load_avg\
+	components/netspeeds\
+	components/num_files\
 	components/ram\
 	components/run_command\
+	components/separator\
+	components/swap\
+	components/temperature\
+	components/uptime\
+	components/user\
+	components/volume\
+	components/wifi
 
 all: slstatus
 
@@ -19,6 +38,7 @@ slstatus.o: slstatus.c slstatus.h arg.h config.h config.mk $(REQ:=.h)
 	$(CC) -o $@ -c $(CPPFLAGS) $(CFLAGS) $<
 
 config.h:
+	
 	cp config.def.h $@
 
 slstatus: slstatus.o $(COM:=.o) $(REQ:=.o)
