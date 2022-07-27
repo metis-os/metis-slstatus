@@ -66,7 +66,7 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          argument */
 	{ run_command, "^c#a813e8^ %s ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
-	{ battery_perc, "^c#e81324^%s%% ", "BAT0" },
+	{ battery_perc, "^c#e81324^ﴔ %s%% ", "BAT0" },
 //	{ wifi_essid, "  %s", "wlo1" },
 //	{ run_command, "  %s", "ifconfig wlo1 | grep 'TX packets' | awk {'print $6 $7'}" },
 //	{ run_command, "  %s ", "ifconfig wlo1 | grep 'RX packets' | awk {'print $6 $7'}" },
